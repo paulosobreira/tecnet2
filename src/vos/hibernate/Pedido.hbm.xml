@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/05/2007 16:47:40 by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="vos.hibernate.Pedido" table="PEDIDO" schema="PUBLIC">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuario" class="vos.hibernate.Usuario" fetch="select">
+            <column name="CLIENTE" length="20" not-null="true" />
+        </many-to-one>
+        <property name="rua" type="string">
+            <column name="RUA" length="50" not-null="true" />
+        </property>
+        <property name="numero" type="int">
+            <column name="NUMERO" not-null="true" />
+        </property>
+        <property name="cidade" type="string">
+            <column name="CIDADE" length="20" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="ESTADO" length="2" not-null="true" />
+        </property>
+        <property name="cep" type="string">
+            <column name="CEP" length="9" not-null="true" />
+        </property>
+        <set name="produtoPedidos" inverse="true">
+            <key>
+                <column name="PEDIDO" not-null="true" />
+            </key>
+            <one-to-many class="vos.hibernate.ProdutoPedido" />
+        </set>
+    </class>
+</hibernate-mapping>

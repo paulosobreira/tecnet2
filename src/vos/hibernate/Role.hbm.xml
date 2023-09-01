@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/05/2007 16:47:40 by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="vos.hibernate.Role" table="ROLE" schema="PUBLIC">
+        <composite-id name="id" class="vos.hibernate.RoleId">
+            <key-property name="login" type="string">
+                <column name="LOGIN" length="20" />
+            </key-property>
+            <key-property name="role" type="string">
+                <column name="ROLE" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="usuario" class="vos.hibernate.Usuario" update="false" insert="false" fetch="select">
+            <column name="LOGIN" length="20" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

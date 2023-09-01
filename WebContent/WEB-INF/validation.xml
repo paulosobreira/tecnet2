@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+	<global/>
+	<formset>
+		<form name="CadastrarPromocaoForm">
+			<field property="produto"
+			       depends="required">
+				<arg key="produto.nome"/>
+			</field>
+			<field property="percentual"
+			       depends="required">
+				<arg key="produto.percentual"/>
+			</field>
+		</form>
+		<form name="EfetuarPedidoForm">
+			<field property="rua"
+			       depends="required,maxlength">
+				<arg key="pedido.rua"/>
+				<arg key="maxlength50"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>				
+			</field>
+			<field property="numero"
+			       depends="required,integer,maxlength">
+				<arg key="pedido.numero"/>
+				<arg key="maxlength6"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>6</var-value>
+				</var>				
+			</field>
+			<field property="cidade"
+			       depends="required,maxlength">
+				<arg key="pedido.cidade"/>
+				<arg key="maxlength20"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>			
+			<field property="estado"
+			       depends="required,maxlength">
+				<arg key="pedido.estado"/>
+				<arg key="maxlength2"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>2</var-value>
+				</var>
+			</field>						
+			<field property="cep"
+			       depends="required">
+				<arg key="pedido.cep"/>
+			</field>			
+		</form>
+		<form name="CadastrarProdutoCategoriaForm">
+			<field property="produto"
+			       depends="required">
+				<arg key="produto.nome"/>
+			</field>
+			<field property="categoria"
+			       depends="required">
+				<arg key="categoria.nome"/>
+			</field>
+		</form>
+	
+		<form name="CadastrarProdutoForm">
+			<field property="nome"
+			       depends="required,maxlength">
+				<arg key="produto.nome"/>
+				<arg key="maxlength20"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="descricao"
+			       depends="required,maxlength">
+				<arg key="produto.descricao"/>
+				<arg key="maxlength50"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<field property="cor"
+			       depends="required">
+				<arg key="produto.cor"/>
+			</field>
+			<field property="peso"
+			       depends="required,double,doubleRange">
+				<arg position="0" key="produto.peso"/>
+		        <arg position="1" name="doubleRange" key="minlength0" />
+        		<arg position="2" name="doubleRange" key="maxlength5000" />
+		        <var><var-name>min</var-name><var-value>0.0</var-value></var>
+        		<var><var-name>max</var-name><var-value>5000.0</var-value></var>
+			</field>
+			<field property="preco"
+			       depends="required,double,doubleRange">
+				<arg position="0" key="produto.preco"/>
+		        <arg position="1" name="doubleRange" key="minlength0" />
+        		<arg position="2" name="doubleRange" key="maxlength10000" />
+		        <var><var-name>min</var-name><var-value>0.0</var-value></var>
+        		<var><var-name>max</var-name><var-value>10000.0</var-value></var>
+			</field>						
+		</form>
+		<form name="CadastrarCategoriaForm">
+			<field property="nome"
+			       depends="required,maxlength">
+				<arg key="categoria.nome"/>
+				<arg key="maxlength20"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>20</var-value>
+				</var>
+			</field>
+			<field property="descricao"
+			       depends="required,maxlength">
+				<arg key="categoria.descricao"/>
+				<arg key="maxlength50"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="loginForm">
+			<field property="login"
+			       depends="required,maxlength">
+				<arg key="user.login"/>
+				<arg key="maxlength10"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="password"
+			       depends="required,mask,maxlength">
+				<arg key="user.pass"/>
+				<arg key="maxlength10"/>				
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9a-zA-Z]*$</var-value>
+				</var>
+			</field>
+		</form>
+		<form name="cadastrarForm">
+			<field property="login"
+			       depends="required,maxlength">
+				<arg key="user.login"/>
+				<arg key="maxlength10"/>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>10</var-value>
+				</var>
+			</field>
+			<field property="senha"
+			       depends="required,mask,maxlength">
+			    <arg key="user.pass"/>   
+				<arg key="maxlength10"/>			    
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9a-zA-Z]*$</var-value>
+				</var>
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>10</var-value>
+				</var>				
+			</field>
+			<field property="nome" depends="required,maxlength">
+				<arg key="user.name"/>
+				<arg key="maxlength50"/>				
+				<var>
+					<var-name>maxlength</var-name>
+					<var-value>50</var-value>
+				</var>
+			</field>
+			<!--
+			<field property="cartao" depends="required,creditCard">
+				<arg key="user.card"/>
+			</field>
+			-->
+			<field property="email" depends="required,email">
+				<arg key="user.email"/>
+			</field>
+			<field property="telefone" depends="required">
+				<arg key="user.fone"/>
+			</field>
+		</form>
+	</formset>
+</form-validation>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/05/2007 16:47:40 by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="vos.hibernate.Promocao" table="PROMOCAO" schema="PUBLIC">
+        <id name="produto" type="long">
+            <column name="PRODUTO" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="produto_1" class="vos.hibernate.Produto" update="false" insert="false" fetch="select">
+            <column name="PRODUTO" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="percentual" type="int">
+            <column name="PERCENTUAL" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

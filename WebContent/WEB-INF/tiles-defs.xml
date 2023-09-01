@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<!-- Definitions for Tiles -->
+
+<tiles-definitions>
+
+  <!-- Definition description  -->
+  <definition name="MyDefinition" path="/layout/classicLayout.jsp">
+	  <put name="title"  value="Menu principal" />
+	  <put name="header" value="/common/header.jsp" />
+	  <put name="footer" value="/common/footer.jsp" />
+	  <put name="menu"   value="/common/MenuUser.jsp" />
+	  <put name="body"   value="/welcome.jsp" />
+  </definition>
+  <definition name="userDefinition" extends="MyDefinition">
+	  <put name="title"  value="Modo Usuario" />
+	  <put name="menu"   value="/common/MenuUser.jsp" />
+  </definition>  
+  <definition name="adminDefinition" extends="MyDefinition">
+	  <put name="title"  value="Modo Administrador" />
+	  <put name="menu"   value="/common/MenuAdmin.jsp" />
+  </definition>   
+  <definition name="CadastrarCategoriaDefinition" extends="adminDefinition">
+	  <put name="title"  value="Cadastrar Categoria" />
+	  <put name="body"   value="/seguro/CadastrarCategoria.jsp" />
+  </definition>
+  <definition name="CadastrarProdutoDefinition" extends="adminDefinition">
+	  <put name="title"  value="Cadastrar Produto" />
+	  <put name="body"   value="/seguro/CadastrarProduto.jsp" />
+  </definition>
+  <definition name="CadastrarProdutoCategoriaDefinition" extends="adminDefinition">
+	  <put name="title"  value="Cadastrar Produto Categoria" />
+	  <put name="body"   value="/seguro/CadastrarProdutoCategoria.jsp" />
+  </definition>
+  <definition name="CadastrarPromocaoDefinition" extends="adminDefinition">
+	  <put name="title"  value="Cadastrar Promocao" />
+	  <put name="body"   value="/seguro/CadastrarPromocao.jsp" />
+  </definition>
+  <definition name="PesquisarProdutoDefinition" extends="userDefinition">
+	  <put name="title"  value="Pesquisar Produto" />
+	  <put name="body"   value="/seguro/PesquisarProduto.jsp" />
+  </definition>
+  <definition name="CarrinhoDefinition" extends="userDefinition">
+	  <put name="title"  value="Carrinho de compras" />
+	  <put name="body"   value="/seguro/Carrinho.jsp" />
+  </definition>
+  <definition name="EfetuarPedidoDefinition" extends="userDefinition">
+	  <put name="title"  value="Efetuar Pedido" />
+	  <put name="body"   value="/seguro/EfetuarPedido.jsp" />
+  </definition>  
+  <definition name="PedidoSalvoDefinition" extends="userDefinition">
+	  <put name="title"  value="Pedido Salvo" />
+	  <put name="body"   value="/seguro/PedidoSalvo.jsp" />
+  </definition>  
+  <definition name="ProdutoPromocaoDefinition" extends="userDefinition">
+	  <put name="title"  value="Produtos em promoção" />
+	  <put name="body"   value="/seguro/ProdutoPromocao.jsp" />
+  </definition>    
+  <definition name="PedidosProdutoDefinition" extends="adminDefinition">
+	  <put name="title"  value="Lista de pedidos" />
+	  <put name="body"   value="/seguro/ListarPedidos.jsp" />
+  </definition>  
+  
+  
+</tiles-definitions>

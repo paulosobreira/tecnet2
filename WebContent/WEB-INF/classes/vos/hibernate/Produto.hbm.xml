@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/05/2007 16:47:40 by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="vos.hibernate.Produto" table="PRODUTO" schema="PUBLIC">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="nome" type="string">
+            <column name="NOME" length="20" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="DESCRICAO" length="50" not-null="true" />
+        </property>
+        <property name="cor" type="string">
+            <column name="COR" length="10" not-null="true" />
+        </property>
+        <property name="peso" type="double">
+            <column name="PESO" precision="0" scale="0" not-null="true" />
+        </property>
+        <property name="preco" type="double">
+            <column name="PRECO" precision="0" scale="0" not-null="true" />
+        </property>
+        <set name="categorias" inverse="true" table="PRODUTO_CATEGORIA">
+            <key>
+                <column name="PRODUTO" not-null="true" />
+            </key>
+            <many-to-many entity-name="vos.hibernate.Categoria">
+                <column name="CATEGORIA" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="produtoPedidos" inverse="true">
+            <key>
+                <column name="PRODUTO" not-null="true" />
+            </key>
+            <one-to-many class="vos.hibernate.ProdutoPedido" />
+        </set>
+        <set name="promocaos" inverse="true">
+            <key>
+                <column name="PRODUTO" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="vos.hibernate.Promocao" />
+        </set>
+    </class>
+</hibernate-mapping>

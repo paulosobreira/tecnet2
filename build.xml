@@ -1,0 +1,73 @@
+<project name="tecnet2" default="all">
+
+
+	<!-- Local system paths -->
+	<property name="distpath.project" value="build"/>
+
+
+	<!-- Project settings -->
+	<property name="project.title" value="Tecnologias de internet 2"/>
+	<property name="project.distname" value="tecnet2"/>
+	<property name="project.version" value="1.3"/>
+
+	<!-- classpath for Struts 1.3 -->
+	<path id="compile.classpath">
+		<fileset dir="WebContent/WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+
+	<!-- Check timestamp on files -->
+	<target name="prepare">
+		<tstamp/>
+	</target>
+
+
+	<!-- Copy any resource or configuration files -->
+	<target name="resources">
+		<copy todir="WebContent/WEB-INF/classes" includeEmptyDirs="no">
+			<fileset dir="src">
+				<patternset>
+					<include name="**/*.conf"/>
+					<include name="**/*.properties"/>
+					<include name="**/*.xml"/>
+				</patternset>
+			</fileset>
+		</copy>
+	</target>
+
+
+	<!-- Normal build of application -->
+	<target name="compile" depends="prepare,resources">
+		<javac srcdir="src" destdir="WebContent/WEB-INF/classes" source="1.7" target="1.7">
+			<classpath refid="compile.classpath"/>
+		</javac>
+	</target>
+
+
+	<!-- Remove classes directory for clean build -->
+	<target name="clean"
+      description="Prepare for clean build">
+		<delete dir="WebContent/WEB-INF/classes"/>
+		<mkdir  dir="WebContent/WEB-INF/classes"/>
+	</target>
+
+	<!-- Build entire project -->
+	<target name="project" depends="clean,prepare,compile"/>
+
+	<!-- Create binary distribution -->
+	<target name="dist"
+        description="Create binary distribution">
+		<war warfile="${distpath.project}/${project.distname}.war" webxml="WebContent/WEB-INF/web.xml">
+		<fileset dir="WebContent">
+		</fileset>	
+		</war>
+
+	</target>
+
+
+	<!-- Build project and create distribution-->
+	<target name="all" depends="project,dist"/>
+
+</project>

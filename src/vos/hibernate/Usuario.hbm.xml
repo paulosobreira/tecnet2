@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/05/2007 16:47:40 by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="vos.hibernate.Usuario" table="USUARIO" schema="PUBLIC">
+        <id name="login" type="string">
+            <column name="LOGIN" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="senha" type="string">
+            <column name="SENHA" length="10" not-null="true" />
+        </property>
+        <property name="nome" type="string">
+            <column name="NOME" length="50" not-null="true" />
+        </property>
+        <property name="cartao" type="string">
+            <column name="CARTAO" length="19" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="40" not-null="true" />
+        </property>
+        <property name="telefone" type="string">
+            <column name="TELEFONE" length="15" not-null="true" />
+        </property>
+        <set name="pedidos" inverse="true">
+            <key>
+                <column name="CLIENTE" length="20" not-null="true" />
+            </key>
+            <one-to-many class="vos.hibernate.Pedido" />
+        </set>
+        <set name="roles" inverse="true">
+            <key>
+                <column name="LOGIN" length="20" not-null="true" />
+            </key>
+            <one-to-many class="vos.hibernate.Role" />
+        </set>
+    </class>
+</hibernate-mapping>
